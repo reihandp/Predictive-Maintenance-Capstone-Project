@@ -6,7 +6,7 @@ Project ini merupakan sistem Predictive Maintenance yang dikembangkan sebagai pr
 untuk memprediksi kegagalan mesin menggunakan pendekatan *machine learning*. Dataset awal diperoleh dari Kaggle, kemudian diperkaya dengan fitur tambahan berupa estimasi waktu operasional mesin (*Prediksi_Waktu*) untuk meningkatkan akurasi prediksi.
 
 ### 1. Dataset Awal (Kaggle)
-Dataset yang digunakan adalah **"Machine Predictive Maintenance Classification"** dari Kaggle dengan file `predictive_maintenance.csv`. Dataset ini memiliki **10.000 sampel** dengan fitur-fitur operasional mesin:
+Dataset yang digunakan adalah **"Machine Predictive Maintenance Classification"** dari Kaggle dengan file `predictive_maintenance.csv`. Dataset ini memiliki **10.000 sampel** dengan fitur-fitur operasional mesin seperti:
 
 - `Air temperature [K]`
 - `Process temperature [K]`
@@ -36,13 +36,13 @@ Pada tahap ini, dilakukan langkah-langkah berikut:
 - **Pengecekan Duplikat**
 - **Pemisahan Data Latih & Uji**
 
-### Model yang Digunakan (3 Algoritma Klasifikasi):
+### Model yang Digunakan (2 Algoritma Klasifikasi & 1 Algoritma Regresi):
 
 | No | Model | Deskripsi |
 |----|-------|-----------|
-| 1  | **Random Forest Classifier** | Menangani karakteristik fitur non-linear pada data mesin. |
-| 2  | **XGBoost Classifier** | Dioptimalkan untuk menangani data *imbalance* pada klasifikasi tipe kegagalan mesin. |
-| 3  | **LightGBM Classifier** | Efisien secara komputasi dengan performa akurasi yang kompetitif. |
+| 1  | **XGBoost Classifier** | Model ini berfungsi sebagai gerbang utama untuk mendeteksi apakah suatu mesin berada dalam kondisi normal atau berpotensi mengalami kegagalan fungsi berdasarkan parameter operasional saat itu. |
+| 2  | **XGBoost Classifier** | Ketika Model 1 mendeteksi adanya kegagalan (Target = 1), Model 2 ini bertugas mengidentifikasi akar penyebabnya (root cause) secara spesifik dengan mengklasifikasikan tipe kerusakan teknis yang sedang terjadi pada mesin. |
+| 3  | **XGBoost Regressor** | Berbeda dengan dua model klasifikasi sebelumnya, model ketiga ini bekerja pada ranah regresi untuk memprediksi nilai kontinu dari fitur hasil data enrichment (Prediksi_Waktu). Model ini memberikan estimasi kuantitatif mengenai berapa hari sisa waktu operasional yang aman bagi mesin (Remaining Useful Life) sebelum kerusakan fatal benar-benar terjadi, berdasarkan tren beban kerja teknisnya. |
 
 > *Catatan: Nama model dapat disesuaikan dengan implementasi akhir di notebook pemodelan.*
 
@@ -50,11 +50,13 @@ Pada tahap ini, dilakukan langkah-langkah berikut:
 Metrik yang digunakan untuk mengevaluasi performa ketiga model:
 - **Akurasi**
 - **F1-Score**
-- **Precision** (opsional)
+- **Precision**
+- **Confusion Matrix** 
 
 ---
 
 ## 📂 Struktur Repositori
+```
 
 ├── data/
 │ ├── predictive_maintenance.csv # Dataset mentah dari Kaggle
@@ -63,7 +65,7 @@ Metrik yang digunakan untuk mengevaluasi performa ketiga model:
 │ ├── data_enrichment.ipynb # Pembuatan fitur Prediksi_Waktu
 │ └── predictive_maintenance_model.ipynb # EDA, pelatihan, & evaluasi model
 └── README.md # Dokumentasi proyek (file ini)
-
+```
 
 ---
 
