@@ -3,7 +3,7 @@ Project ini merupakan sistem Predictive Maintenance yang dikembangkan sebagai pr
 
 ## 📊 Dataset & Data Enrichment
 
-untuk memprediksi kegagalan mesin menggunakan pendekatan *machine learning*. Dataset awal diperoleh dari Kaggle, kemudian diperkaya dengan fitur tambahan berupa estimasi waktu operasional mesin (*Prediksi_Waktu*) untuk meningkatkan akurasi prediksi.
+Untuk memprediksi kegagalan mesin menggunakan pendekatan *machine learning*. Dataset awal diperoleh dari Kaggle, kemudian diperkaya dengan fitur tambahan berupa estimasi waktu operasional mesin (*Prediksi_Waktu*) untuk meningkatkan akurasi prediksi.
 
 ### 1. Dataset Awal (Kaggle)
 Dataset yang digunakan adalah **"Machine Predictive Maintenance Classification"** dari Kaggle dengan file `predictive_maintenance.csv`. Dataset ini memiliki **10.000 sampel** dengan fitur-fitur operasional mesin seperti:
